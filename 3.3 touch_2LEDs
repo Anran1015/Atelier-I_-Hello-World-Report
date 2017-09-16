@@ -1,0 +1,29 @@
+const int buttonPin = 2;     // the number of the pushbutton pin
+const int ledPin =  13;      // the number of the LED pin
+const int led2Pin =  12; 
+
+
+
+void setup() {
+  // initialize the LED pin as an output:
+  pinMode(ledPin, OUTPUT);
+    pinMode(led2Pin, OUTPUT);
+  // initialize the pushbutton pin as an input:
+  pinMode(buttonPin, INPUT);
+}
+
+void loop() {
+  // read the state of the pushbutton value:
+  int buttonState = digitalRead(buttonPin);
+
+  
+  if (buttonState == HIGH) {
+    // turn LED on:
+    digitalWrite(ledPin, LOW);
+    digitalWrite(led2Pin, HIGH);
+  } else {
+    // turn LED off:
+    digitalWrite(ledPin, HIGH);
+    digitalWrite(led2Pin, LOW);
+  }
+}

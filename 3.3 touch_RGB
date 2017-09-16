@@ -1,0 +1,32 @@
+int r = 9;
+int g = 10;
+int b = 11;
+
+const int buttonPin = 2;     // the number of the pushbutton pin
+
+
+
+void setup() {
+ 
+  pinMode(r, OUTPUT);
+  pinMode(g, OUTPUT);
+  pinMode(b, OUTPUT);
+
+  pinMode(buttonPin, INPUT);
+}
+
+void loop() {
+  
+  int buttonState = digitalRead(buttonPin);
+
+  if (buttonState == HIGH) {
+    analogWrite(r, 223);
+    analogWrite(g,200 );
+    analogWrite(b, 25);
+  }else{
+    analogWrite(r, 10);
+    analogWrite(g,103 );
+    analogWrite(b, 205);
+    }
+
+}

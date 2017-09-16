@@ -1,3 +1,5 @@
+
+//circuit: https://www.precisionmicrodrives.com/tech-blog/2016/05/16/how-drive-vibration-motor-arduino-and-genuino
 const int motorPin = 3;
 
 void setup()

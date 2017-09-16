@@ -1,0 +1,17 @@
+const int motorPin = 3;
+
+void setup()
+{
+  Serial.begin(9600);
+pinMode(motorPin, OUTPUT);
+}
+
+void loop()
+{
+digitalWrite(motorPin, HIGH);
+Serial.println("high");
+delay(2000);
+digitalWrite(motorPin, LOW);
+Serial.println("low");
+delay(5000);
+}

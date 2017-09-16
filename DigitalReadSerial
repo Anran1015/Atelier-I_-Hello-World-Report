@@ -1,0 +1,39 @@
+int pad0 = 0;
+int pad1 = 1;
+int pad2 = 2;
+int pad3 = 3;
+int pad4 = 4;
+
+void setup() {
+ 
+  Serial.begin(9600);
+  pinMode(pad0, INPUT);
+  pinMode(pad1, INPUT);
+  pinMode(pad2, INPUT);
+  pinMode(pad3, INPUT);
+  pinMode(pad4, INPUT);
+
+}
+
+
+void loop() {
+
+  int padState0 = digitalRead(pad0);
+  Serial.print("sensor0:"padState0);
+  
+  int padState1 = digitalRead(pad1);
+  Serial.print("sensor1:"padState1);
+  
+  int padState2 = digitalRead(pad2);
+  Serial.print("sensor2:"padState2);
+  
+  int padState3 = digitalRead(pad3); 
+  Serial.print("sensor3:"padState3);
+  
+  int padState4 = digitalRead(pad4);
+  Serial.print("sensor4:"padState4);
+  
+  delay(1);      
+}
+
+

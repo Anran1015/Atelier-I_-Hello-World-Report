@@ -1,0 +1,29 @@
+
+//for arduino, just upload the StandardFirmata file to it.
+import processing.serial.*;
+import cc.arduino.*;
+Arduino arduino;
+
+color off = color(4, 79, 111);
+color on = color(84, 145, 158);
+
+void setup() {
+  fullScreen();
+  arduino = new Arduino(this, Arduino.list()[1], 57600);
+  for (int i = 0; i <= 13; i++){
+    arduino.pinMode(i, Arduino.INPUT);
+    }
+}
+
+void draw() {
+  background(off);
+  stroke(on);
+
+  noFill();
+
+  ellipse(width/2, height/2, pow((arduino.analogRead(0)-900), 2), pow((arduino.analogRead(0)-900), 2));
+
+  println(arduino.analogRead(0));
+  frameRate(4);
+  delay(200);
+}

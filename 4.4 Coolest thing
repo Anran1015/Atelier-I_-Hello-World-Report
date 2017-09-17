@@ -1,0 +1,71 @@
+import processing.opengl.*; 
+import processing.serial.*;
+import cc.arduino.*;
+
+//using arduino library(Firmata) for processing, upload StandardFirmata to Arduino
+Arduino arduino;
+int A0;
+
+
+void setup() {
+  //size(870, 880, OPENGL);
+  fullScreen(OPENGL);
+  frameRate(1);
+  smooth();
+  arduino = new Arduino(this, Arduino.list()[1], 57600);
+
+  arduino.pinMode(A0, Arduino.INPUT);
+  arduino.pinMode(2, Arduino.OUTPUT);
+  arduino.pinMode(3, Arduino.OUTPUT);
+}
+
+//the circle chagnes size with stretch
+void draw() {
+  background(0);
+  drawLinearGradientDisc(width/2, height/2, 
+    (arduino.analogRead(0)-880)*6,  //x size
+    (arduino.analogRead(0)-880)*6,  //y size 
+    color(#f02fc2), 
+    color(#6094ea) 
+    ); 
+
+
+//if value>980, then acticate motor and led
+  if (arduino.analogRead(A0)>980) {
+    arduino.digitalWrite(2, Arduino.HIGH);
+    arduino.digitalWrite(3, Arduino.LOW);
+  } else {
+    arduino.digitalWrite(2, Arduino.LOW);
+    arduino.digitalWrite(3, Arduino.HIGH);
+  }
+
+
+  println(arduino.analogRead(A0));
+  fill(255);
+  textSize(arduino.analogRead(A0)-920); // text size changes with stretching
+  text(arduino.analogRead(0), width/2-80, height/2); //print the value on the screen
+  delay(100);
+}
+
+
+void drawLinearGradientDisc( float x, float y, float radiusX, float radiusY, int fromC, int toC )
+{ 
+  noStroke(); 
+  beginShape(TRIANGLE_STRIP);
+  int halfC = lerpColor(fromC, toC, 0.5);
+
+  for (float theta=0; theta<TWO_PI; theta+=TWO_PI/36)
+  { 
+    fill(halfC);  
+    vertex(x, y);
+    if ( theta <= PI )
+      fill(lerpColor(fromC/3, toC/2, (theta%PI)/PI ));
+    else
+      fill(lerpColor(toC/2, fromC/3, (theta%PI)/PI ));
+    vertex(x+radiusX*cos(theta)/2, y+radiusY*sin(theta)/2);
+  } 
+  endShape();
+}
+
+
+//COLOUR GRADIENT CODE REFERENCE: https://processing.org/discourse/beta/num_1186336072.html

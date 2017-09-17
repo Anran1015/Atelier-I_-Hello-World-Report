@@ -19,19 +19,19 @@ void setup() {
 void loop() {
 
   int padState0 = digitalRead(pad0);
-  Serial.print("sensor0:"padState0);
+  Serial.println("sensor0:"padState0);
   
   int padState1 = digitalRead(pad1);
-  Serial.print("sensor1:"padState1);
+  Serial.println("sensor1:"padState1);
   
   int padState2 = digitalRead(pad2);
-  Serial.print("sensor2:"padState2);
+  Serial.println("sensor2:"padState2);
   
   int padState3 = digitalRead(pad3); 
-  Serial.print("sensor3:"padState3);
+  Serial.println("sensor3:"padState3);
   
   int padState4 = digitalRead(pad4);
-  Serial.print("sensor4:"padState4);
+  Serial.println("sensor4:"padState4);
   
   delay(1);      
 }

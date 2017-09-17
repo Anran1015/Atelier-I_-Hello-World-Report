@@ -31,13 +31,13 @@ void setup() {
 }
 void draw() {
 
-  if (arduino.analogRead(A1)>500 & arduino.analogRead(A1)<600) {
+  if (arduino.analogRead(A1)>500 & arduino.analogRead(A1)>600) {
     //tone1.cue(0);
     //tone1.play();
     rect(100,100,200,200);
   }
   
-  if (arduino.analogRead(A2)>700) {
+  if (arduino.analogRead(A2)>600) {
     //tone1.cue(0);
     //tone1.play();
     rect(300,100,200,200);

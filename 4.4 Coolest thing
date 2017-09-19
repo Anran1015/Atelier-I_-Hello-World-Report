@@ -1,16 +1,16 @@
 import processing.opengl.*; 
 import processing.serial.*;
 import cc.arduino.*;
+//using arduino library(Firmata) for processing
 
-//using arduino library(Firmata) for processing, upload StandardFirmata to Arduino
 Arduino arduino;
 int A0;
 
 
 void setup() {
-  //size(870, 880, OPENGL);
-  fullScreen(OPENGL);
-  frameRate(1);
+
+  fullScreen(P3D);
+
   smooth();
   arduino = new Arduino(this, Arduino.list()[1], 57600);
 
@@ -31,7 +31,7 @@ void draw() {
 
 
 //if value>980, then acticate motor and led
-  if (arduino.analogRead(A0)>980) {
+  if (arduino.analogRead(A0)>970) {
     arduino.digitalWrite(2, Arduino.HIGH);
     arduino.digitalWrite(3, Arduino.LOW);
   } else {
